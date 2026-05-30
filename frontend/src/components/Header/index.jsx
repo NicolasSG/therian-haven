@@ -55,6 +55,7 @@ export default function Header() {
               </span>
               Therian Haven
             </NavLink>
+
             <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-muted-foreground">
               <NavLink
                 to="/"
@@ -62,17 +63,26 @@ export default function Header() {
               >
                 Início
               </NavLink>
+
               <NavLink
                 to="/agendamento"
                 className="hover:text-foreground transition-colors"
               >
                 Agendamento
               </NavLink>
+
               <NavLink
                 to="/adocao"
                 className="hover:text-foreground transition-colors"
               >
                 Adoção
+              </NavLink>
+
+              <NavLink
+                to="/encontre-um-lar"
+                className="hover:text-foreground transition-colors"
+              >
+                Encontre um lar
               </NavLink>
             </nav>
 
@@ -99,6 +109,7 @@ export default function Header() {
                   <NavLink to="/login">Entrar</NavLink>
                 </Button>
               )}
+
               <Button
                 asChild
                 size="sm"

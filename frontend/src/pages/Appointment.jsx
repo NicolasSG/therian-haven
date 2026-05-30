@@ -209,11 +209,7 @@ export default function Appointment() {
                   minLength={2}
                   maxLength={50}
                   placeholder="Ex: Thor"
-                  onChange={validatePetName}
                 />
-                {petNameError && (
-                  <p className="text-sm text-destructive">{petNameError}</p>
-                )}
               </div>
               <div className="space-y-1.5">
                 <Label htmlFor="raca">Raça / porte</Label>
@@ -228,11 +224,7 @@ export default function Appointment() {
                   minLength={2}
                   maxLength={50}
                   placeholder="Ex: Shih Tzu, pequeno"
-                  onChange={validatePetBreed}
                 />
-                {breedError && (
-                  <p className="text-sm text-destructive">{breedError}</p>
-                )}
               </div>
               <div className="space-y-1.5">
                 <Label htmlFor="tutor">Seu nome</Label>
@@ -247,11 +239,7 @@ export default function Appointment() {
                   minLength={2}
                   maxLength={100}
                   placeholder="Como podemos te chamar?"
-                  onChange={validateName}
                 />
-                {nameError && (
-                  <p className="text-sm text-destructive">{nameError}</p>
-                )}
               </div>
               <div className="space-y-1.5">
                 <Label htmlFor="tel">WhatsApp</Label>
@@ -268,11 +256,7 @@ export default function Appointment() {
                   maxLength={15}
                   pattern={"[0-9\\s\\(\\)\\+\\-]+"}
                   placeholder="(11) 99999-0000"
-                  onChange={validatePhone}
                 />
-                {phoneError && (
-                  <p className="text-sm text-destructive">{phoneError}</p>
-                )}
               </div>
               <div className="space-y-1.5 sm:col-span-2">
                 <Label htmlFor="data">Data</Label>

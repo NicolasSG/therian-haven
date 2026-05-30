@@ -13,7 +13,7 @@ export default function Login() {
   const [nameError, setNameError] = useState("");
   const [phoneError, setPhoneError] = useState("");
   const [cityError, setCityError] = useState("");
-  const [adressError, setAdressError] = useState("");
+  // const [adressError, setAdressError] = useState("");
 
   //validação do nome:
   function validateName(e) {
@@ -233,7 +233,7 @@ export default function Login() {
                   </div>
                 </div>
 
-                <div className="space-y-1.5">
+                {/* <div className="space-y-1.5">
                   <Label htmlFor="su-address">Endereço</Label>
                   <Input
                     id="su-address"
@@ -247,7 +247,7 @@ export default function Login() {
                   {adressError && (
                     <p className="text-sm text-destructive">{adressError}</p>
                   )}
-                </div>
+                </div> */}
 
                 <div className="space-y-1.5">
                   <Label htmlFor="su-email">E-mail</Label>
