@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
 import {
   Bath,
   Scissors,
@@ -10,29 +11,30 @@ import {
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import api from "@/utils/Api";
 
 const servicos = [
-  { id: "banho", icon: Bath, nome: "Banho", duracao: "45 min", preco: "R$ 70" },
+  { id: "banho", icon: Bath, nome: "Banho", duracao: "45 min", preco: 70 },
   {
     id: "tosa",
     icon: Scissors,
     nome: "Tosa completa",
     duracao: "1h 30",
-    preco: "R$ 120",
+    preco: 120,
   },
   {
     id: "hidratacao",
     icon: Sparkles,
     nome: "Hidratação",
     duracao: "1h",
-    preco: "R$ 90",
+    preco: 90,
   },
   {
     id: "combo",
     icon: Check,
     nome: "Combo banho + tosa",
     duracao: "2h",
-    preco: "R$ 170",
+    preco: 170,
   },
 ];
 
@@ -49,11 +51,80 @@ const horarios = [
 export default function Appointment() {
   const [servico, setServico] = useState("banho");
   const [horario, setHorario] = useState("10:30");
+  const [feedback, setFeedback] = useState(null);
+  const {
+    register,
+    handleSubmit,
+    reset,
+    setValue,
+    formState: { isSubmitting },
+  } = useForm({
+    defaultValues: {
+      servico: servicos[0],
+      horario: "10:30",
+      pet: "",
+      raca: "",
+      tutor: "",
+      tel: "",
+      data: "",
+    },
+  });
 
-  function handleSubmit(e) {
-    e.preventDefault();
-    alert("Agendamento enviado com sucesso!");
+  useEffect(() => {
+    register("servico", { required: true });
+    register("horario", { required: true });
+  }, [register]);
+
+  function handleServiceSelect(selectedService) {
+    setServico(selectedService.id);
+    setValue("servico", selectedService, { shouldValidate: true });
   }
+
+  function handleTimeSelect(selectedTime) {
+    setHorario(selectedTime);
+    setValue("horario", selectedTime, { shouldValidate: true });
+  }
+
+  async function onSubmit(formData) {
+    setFeedback(null);
+
+    const appointment = {
+      servico: formData.servico,
+      date: formData.data,
+      time: formData.horario,
+      typeOfTherian: formData.raca,
+      pet: formData.pet,
+      tutor: formData.tutor,
+      tel: formData.tel,
+    };
+
+    try {
+      await api.createGrooming(appointment);
+      reset({
+        servico: servicos[0],
+        horario: "10:30",
+        pet: "",
+        raca: "",
+        tutor: "",
+        tel: "",
+        data: "",
+      });
+      setServico("banho");
+      setHorario("10:30");
+      setFeedback({
+        type: "success",
+        message: "Agendamento salvo no banco de dados.",
+      });
+    } catch (error) {
+      setFeedback({
+        type: "error",
+        message:
+          error.message === "Acesso negado"
+            ? "Faca login antes de confirmar o agendamento."
+            : error.message,
+      });
+    }
+  };
 
   return (
     <div className="min-h-screen flex flex-col font-sans bg-secondary/10">
@@ -72,7 +143,7 @@ export default function Appointment() {
 
       <section className="mx-auto max-w-7xl w-full px-6 grid lg:grid-cols-[1fr_360px] gap-8 pb-20">
         <form
-          onSubmit={handleSubmit}
+          onSubmit={handleSubmit(onSubmit)}
           className="bg-card rounded-3xl p-8 shadow-lg border border-border/60 space-y-8"
         >
           <div>
@@ -80,16 +151,22 @@ export default function Appointment() {
             <div className="grid sm:grid-cols-2 gap-3">
               {servicos.map(({ id, icon: Icon, nome, duracao, preco }) => {
                 const active = servico === id;
+                const selectedService = {
+                  id,
+                  nome,
+                  duracao,
+                  preco,
+                };
+
                 return (
                   <button
                     type="button"
                     key={id}
-                    onClick={() => setServico(id)}
-                    className={`text-left rounded-2xl p-4 border transition-all flex items-start gap-3 ${
-                      active
-                        ? "border-primary bg-green-600 shadow-md -"
-                        : "border-border bg-background hover:border-primary/50"
-                    }`}
+                    onClick={() => handleServiceSelect(selectedService)}
+                    className={`text-left rounded-2xl p-4 border transition-all flex items-start gap-3 ${active
+                      ? "border-primary bg-green-600 shadow-md -"
+                      : "border-border bg-background hover:border-primary/50"
+                      }`}
                   >
                     <div
                       className={`grid place-items-center h-10 w-10 rounded-xl ${active ? "bg-purple-600 text-primary-foreground" : "bg-muted text-muted-foreground"}`}
@@ -100,7 +177,7 @@ export default function Appointment() {
                       <div className="flex items-baseline justify-between gap-2">
                         <p className="font-semibold text-sm">{nome}</p>
                         <span className="text-sm font-semibold text-primary">
-                          {preco}
+                          R$ {preco}
                         </span>
                       </div>
                       <p className="text-xs text-muted-foreground flex items-center gap-1 mt-1">
@@ -122,6 +199,11 @@ export default function Appointment() {
                 <Label htmlFor="pet">Nome do pet</Label>
                 <Input
                   id="pet"
+                  {...register("pet", {
+                    required: true,
+                    minLength: 2,
+                    maxLength: 50,
+                  })}
                   required
                   minLength={2}
                   maxLength={50}
@@ -132,6 +214,11 @@ export default function Appointment() {
                 <Label htmlFor="raca">Raça / porte</Label>
                 <Input
                   id="raca"
+                  {...register("raca", {
+                    required: true,
+                    minLength: 2,
+                    maxLength: 50,
+                  })}
                   required
                   minLength={2}
                   maxLength={50}
@@ -142,6 +229,11 @@ export default function Appointment() {
                 <Label htmlFor="tutor">Seu nome</Label>
                 <Input
                   id="tutor"
+                  {...register("tutor", {
+                    required: true,
+                    minLength: 2,
+                    maxLength: 100,
+                  })}
                   required
                   minLength={2}
                   maxLength={100}
@@ -152,11 +244,16 @@ export default function Appointment() {
                 <Label htmlFor="tel">WhatsApp</Label>
                 <Input
                   id="tel"
+                  {...register("tel", {
+                    required: true,
+                    minLength: 10,
+                    maxLength: 15,
+                  })}
                   required
                   type="tel"
                   minLength={10}
                   maxLength={15}
-                  pattern="[\d\s()+-]+"
+                  pattern={"[0-9\\s\\(\\)\\+\\-]+"}
                   placeholder="(11) 99999-0000"
                 />
               </div>
@@ -164,6 +261,7 @@ export default function Appointment() {
                 <Label htmlFor="data">Data</Label>
                 <Input
                   id="data"
+                  {...register("data", { required: true })}
                   required
                   type="date"
                   min={new Date().toISOString().split("T")[0]}
@@ -183,12 +281,11 @@ export default function Appointment() {
                   <button
                     type="button"
                     key={h}
-                    onClick={() => setHorario(h)}
-                    className={`px-4 h-10 rounded-full text-sm font-medium border transition-all ${
-                      active
-                        ? "bg-primary text-primary-foreground border-primary"
-                        : "bg-background border-border hover:border-primary/50"
-                    }`}
+                    onClick={() => handleTimeSelect(h)}
+                    className={`px-4 h-10 rounded-full text-sm font-medium border transition-all ${active
+                      ? "bg-primary text-primary-foreground border-primary"
+                      : "bg-background border-border hover:border-primary/50"
+                      }`}
                   >
                     {h}
                   </button>
@@ -197,8 +294,26 @@ export default function Appointment() {
             </div>
           </div>
 
-          <Button type="submit" size="lg" className="w-full rounded-full h-12">
-            <CalendarCheck className="h-4 w-4 mr-2" /> Confirmar agendamento
+          {feedback && (
+            <p
+              className={
+                feedback.type === "success"
+                  ? "text-sm font-medium text-green-700"
+                  : "text-sm font-medium text-destructive"
+              }
+            >
+              {feedback.message}
+            </p>
+          )}
+
+          <Button
+            type="submit"
+            size="lg"
+            className="w-full rounded-full h-12"
+            disabled={isSubmitting}
+          >
+            <CalendarCheck className="h-4 w-4 mr-2" />{" "}
+            {isSubmitting ? "Salvando..." : "Confirmar agendamento"}
           </Button>
         </form>
 
@@ -219,7 +334,7 @@ export default function Appointment() {
               <div className="flex justify-between border-t border-border pt-3 mt-3">
                 <span className="text-muted-foreground">Total</span>
                 <span className="font-semibold text-primary">
-                  {servicos.find((s) => s.id === servico)?.preco}
+                  R$ {servicos.find((s) => s.id === servico)?.preco}
                 </span>
               </div>
             </div>

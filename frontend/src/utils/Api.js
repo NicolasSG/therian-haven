@@ -34,6 +34,19 @@ class Api {
       body: JSON.stringify(user),
     }).then(this._checkResponse);
   }
+
+  createGrooming(appointment) {
+    const token = localStorage.getItem("jwt") || localStorage.getItem("token");
+
+    return fetch(`${this._baseUrl}/grooming`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        ...(token ? { Authorization: `Bearer ${token}` } : {}),
+      },
+      body: JSON.stringify(appointment),
+    }).then(this._checkResponse);
+  }
 }
 
 const api = new Api({
