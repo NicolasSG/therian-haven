@@ -1,0 +1,45 @@
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Figtree:wght@400;500;600;700&display=swap");
+
+@tailwind base;
+
+@tailwind components;
+
+@tailwind utilities;
+
+
+:root {
+  --radius: 1rem;
+
+  /* Paleta Neon & Cyber High-Contrast */
+  --sand: #0f111a; /* Fundo principal (Preto Azulado) */
+  --terracotta-soft: #25162b; /* Roxo escuro para detalhes em blocos */
+  --terracotta: #ff007f; /* Rosa Choque Neon (Principal) */
+  --terracotta-deep: #39ff14; /* Verde Limão Elétrico / Neon */
+
+  --background: #0f111a; /* Fundo escuro absoluto */
+  --foreground: #ffffff; /* Texto em branco puro para leitura */
+  --card: #161925; /* Cards cinza-grafite escuro */
+  --card-foreground: #ffffff;
+  --popover: #161925;
+  --popover-foreground: #ffffff;
+  --primary: #ff007f; /* Rosa Neon */
+  --primary-foreground: #ffffff;
+  --secondary: #00f0ff; /* Ciano / Azul Elétrico */
+  --secondary-foreground: #000000; /* Texto preto sobre o botão ciano para contraste */
+  --muted: #1f2335;
+  --muted-foreground: #a0aec0;
+  --accent: #39ff14; /* Verde Neon */
+  --accent-foreground: #000000;
+  --destructive: #ff3333;
+  --destructive-foreground: #ffffff;
+  --border: #2d3142;
+  --input: #1f2335;
+  --ring: #ff007f;
+
+  /* Gradientes Psicodélicos e Sombras com "Glow" Neon */
+  --gradient-hero: linear-gradient(135deg, #161925 0%, #25162b 100%);
+  --gradient-soft: linear-gradient(180deg, #25162b 0%, #0f111a 100%);
+
+  /* Sombras que imitam o efeito de luz negra/neon brilhando */
+  --shadow-soft: 0;
+}
