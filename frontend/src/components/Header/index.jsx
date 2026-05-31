@@ -1,37 +1,11 @@
 import { Button } from "@/components/ui/button";
+import therianLogo from "@/assets/therian logo.png";
 import { LogOut } from "lucide-react";
 import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 
 export default function Header() {
   const [user, setUser] = useState(null);
-  const [adoption, setAdoption] = useState(null);
-
-  useEffect(() => {
-    function handleAdoptionPending(e) {
-      setAdoption({ name: e.detail.name, status: "pending", countdown: 40 });
-    }
-    window.addEventListener("adoption:pending", handleAdoptionPending);
-    return () => window.removeEventListener("adoption:pending", handleAdoptionPending);
-  }, []);
-
-  useEffect(() => {
-    if (!adoption || adoption.status !== "pending") return;
-    if (adoption.countdown <= 0) {
-      setAdoption((prev) => ({ ...prev, status: "approved" }));
-      return;
-    }
-    const t = setTimeout(() => {
-      setAdoption((prev) => ({ ...prev, countdown: prev.countdown - 1 }));
-    }, 1000);
-    return () => clearTimeout(t);
-  }, [adoption]);
-
-  useEffect(() => {
-    if (adoption?.status !== "approved") return;
-    const t = setTimeout(() => setAdoption(null), 5000);
-    return () => clearTimeout(t);
-  }, [adoption?.status]);
 
   useEffect(() => {
     function syncUser() {
@@ -77,8 +51,12 @@ export default function Header() {
               to="/"
               className="flex items-center gap-2 font-display font-bold text-lg text-foreground"
             >
-              <span className="grid place-items-center h-9 w-9 rounded-full bg-primary text-primary-foreground">
-                {/* <PawPrint className="h-4 w-4" /> */}
+              <span className="grid place-items-center h-9 w-9 rounded-full bg-primary text-primary-foreground overflow-hidden">
+                <img
+                  src={therianLogo}
+                  alt="Therian Heaven"
+                  className="h-full w-full object-cover"
+                />
               </span>
               Therian Heaven
             </NavLink>
@@ -119,22 +97,6 @@ export default function Header() {
               </NavLink>
             </nav>
 
-            {adoption && (
-              <div
-                className={`hidden md:flex items-center gap-1.5 text-xs font-medium px-3 py-1.5 rounded-full transition-all ${
-                  adoption.status === "pending"
-                    ? "bg-warning/20 text-warning-deep animate-pulse"
-                    : "bg-success/20 text-success-deep"
-                }`}
-              >
-                {adoption.status === "pending" ? (
-                  <>⏳ {adoption.name} · aguardando aprovação · {adoption.countdown}s</>
-                ) : (
-                  <>✓ Adoção de {adoption.name} aprovada!</>
-                )}
-              </div>
-            )}
-
             <div className="flex items-center gap-3">
               {user ? (
                 <Button
@@ -173,5 +135,4 @@ export default function Header() {
     </header>
   );
 }
-
 

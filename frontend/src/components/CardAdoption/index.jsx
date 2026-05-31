@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { MapPin, Heart } from "lucide-react";
+import { MapPin, Heart, Trash2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import api from "@/utils/Api";
 import { DialogAdoption } from "../DialogAdoption";
@@ -14,15 +14,8 @@ const therianImages = Object.values(
   }),
 );
 
-function getImageIndex(seed) {
-  const chars = String(seed).split("");
-  const total = chars.reduce((sum, char) => sum + char.charCodeAt(0), 0);
-
-  return total % therianImages.length;
-}
-
 function normalizeTherian(therian, index) {
-  const imageIndex = getImageIndex(therian.id || therian._id || index);
+  const imageIndex = index % therianImages.length;
 
   return {
     id: therian._id || therian.id || therian.nome,
@@ -35,7 +28,7 @@ function normalizeTherian(therian, index) {
     size: therian.escolaridade || "Nao informado",
     trait: therian.theriotype,
     local: `${therian.cidade}, ${therian.estado}`,
-    img: therian.fotoPerfil || therianImages[imageIndex],
+    img: therianImages[imageIndex],
     bio: therian.descricao,
     castrado: therian.castrado,
     vermifugado: !therian.necessidadesEspeciais?.length,
@@ -49,11 +42,32 @@ function normalizeTherian(therian, index) {
   };
 }
 
+function getLoggedUser() {
+  try {
+    return JSON.parse(localStorage.getItem("user") || "null");
+  } catch {
+    return null;
+  }
+}
+
 export default function CardAdoption({ limit = null }) {
   const [selected, setSelected] = useState(null);
   const [animais, setAnimais] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+  const [user, setUser] = useState(getLoggedUser);
+
+  useEffect(() => {
+    function syncUser() {
+      setUser(getLoggedUser());
+    }
+    window.addEventListener("auth:change", syncUser);
+    window.addEventListener("storage", syncUser);
+    return () => {
+      window.removeEventListener("auth:change", syncUser);
+      window.removeEventListener("storage", syncUser);
+    };
+  }, []);
 
   useEffect(() => {
     let ignore = false;
@@ -85,6 +99,21 @@ export default function CardAdoption({ limit = null }) {
       ignore = true;
     };
   }, []);
+
+  async function handleDelete(a) {
+    try {
+      await api.deleteTherian(a.id);
+      localStorage.removeItem(`therian_owner_${a.id}`);
+      setAnimais((prev) => prev.filter((x) => x.id !== a.id));
+    } catch {
+      // silently ignore
+    }
+  }
+
+  function isOwner(a) {
+    if (!user?._id) return false;
+    return localStorage.getItem(`therian_owner_${a.id}`) === user._id;
+  }
 
   if (loading) {
     return (
@@ -145,12 +174,24 @@ export default function CardAdoption({ limit = null }) {
               <p className="text-xs text-muted-foreground mt-3 flex items-center gap-1.5">
                 <MapPin className="h-3.5 w-3.5" /> {a.local}
               </p>
-              <Button
-                onClick={() => setSelected(a)}
-                className="mt-5 w-full rounded-full bg-success"
-              >
-                <Heart className="h-4 w-4 mr-2" /> Quero adotar {a.name}
-              </Button>
+              <div className="mt-5 flex gap-2">
+                <Button
+                  onClick={() => setSelected(a)}
+                  className="flex-1 rounded-full bg-success"
+                >
+                  <Heart className="h-4 w-4 mr-2" /> Quero adotar {a.name}
+                </Button>
+                {isOwner(a) && (
+                  <Button
+                    variant="outline"
+                    size="icon"
+                    className="rounded-full shrink-0 border-destructive/40 text-destructive hover:bg-destructive hover:text-destructive-foreground"
+                    onClick={() => handleDelete(a)}
+                  >
+                    <Trash2 className="h-4 w-4" />
+                  </Button>
+                )}
+              </div>
             </div>
           </article>
         ))}
