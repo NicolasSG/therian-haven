@@ -64,7 +64,13 @@ export default function Header() {
             <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-muted-foreground">
               <NavLink
                 to="/"
-                className="hover:text-foreground transition-colors"
+                className={({ isActive }) =>
+                  `transition-colors ${
+                    isActive
+                      ? "text-primary font-semibold border-b-2 border-primary pb-1"
+                      : "text-muted-foreground hover:text-foreground"
+                  }`
+                }
               >
                 Início
               </NavLink>
@@ -84,14 +90,26 @@ export default function Header() {
 
               <NavLink
                 to="/adocao"
-                className="hover:text-foreground transition-colors"
+                className={({ isActive }) =>
+                  `transition-colors ${
+                    isActive
+                      ? "text-primary font-semibold border-b-2 border-primary pb-1"
+                      : "text-muted-foreground hover:text-foreground"
+                  }`
+                }
               >
                 Adoção
               </NavLink>
 
               <NavLink
                 to="/encontre-um-lar"
-                className="hover:text-foreground transition-colors"
+                className={({ isActive }) =>
+                  `transition-colors ${
+                    isActive
+                      ? "text-primary font-semibold border-b-2 border-primary pb-1"
+                      : "text-muted-foreground hover:text-foreground"
+                  }`
+                }
               >
                 Encontre um lar
               </NavLink>
