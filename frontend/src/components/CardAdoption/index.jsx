@@ -14,15 +14,8 @@ const therianImages = Object.values(
   }),
 );
 
-function getImageIndex(seed) {
-  const chars = String(seed).split("");
-  const total = chars.reduce((sum, char) => sum + char.charCodeAt(0), 0);
-
-  return total % therianImages.length;
-}
-
 function normalizeTherian(therian, index) {
-  const imageIndex = getImageIndex(therian.id || therian._id || index);
+  const imageIndex = index % therianImages.length;
 
   return {
     id: therian._id || therian.id || therian.nome,
@@ -35,7 +28,7 @@ function normalizeTherian(therian, index) {
     size: therian.escolaridade || "Nao informado",
     trait: therian.theriotype,
     local: `${therian.cidade}, ${therian.estado}`,
-    img: therian.fotoPerfil || therianImages[imageIndex],
+    img: therianImages[imageIndex],
     bio: therian.descricao,
     castrado: therian.castrado,
     vermifugado: !therian.necessidadesEspeciais?.length,

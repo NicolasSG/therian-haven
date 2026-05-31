@@ -55,6 +55,17 @@ export default function FindAHome() {
     setLoading(true);
     setFeedback(null);
 
+    const token = localStorage.getItem("jwt") || localStorage.getItem("token");
+
+    if (!token) {
+      setFeedback({
+        type: "error",
+        message: "Faca login antes de salvar o cadastro.",
+      });
+      setLoading(false);
+      return;
+    }
+
     const form = e.currentTarget;
     const formData = new FormData(form);
 
@@ -101,7 +112,11 @@ export default function FindAHome() {
       setCastrado(true);
       setVermifugado(true);
       setVacinaAplicada(true);
-      navigate("/adocao");
+      setFeedback({
+        type: "success",
+        message: "Cadastro salvo com sucesso! Redirecionando para adocao...",
+      });
+      setTimeout(() => navigate("/adoption"), 1200);
     } catch (error) {
       setFeedback({ type: "error", message: error.message });
     } finally {
@@ -259,7 +274,7 @@ export default function FindAHome() {
                       <SelectItem value="Vegetariano">
                         🥦 Vegetariano
                       </SelectItem>
-                      <SelectItem value="Onivoro">🍳 Onívoro</SelectItem>
+                      <SelectItem value="Vegano">🌱 Vegano</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
@@ -340,16 +355,6 @@ export default function FindAHome() {
                       />
                     </div>
                     <div className="space-y-1">
-                      <Label htmlFor="resgate" className="text-xs">
-                        Resgatado em
-                      </Label>
-                      <Input
-                        id="resgate"
-                        name="resgate"
-                        placeholder="Ex: Mai/26"
-                      />
-                    </div>
-                    <div className="space-y-1">
                       <Label htmlFor="escolaridade" className="text-xs">
                         Treinamento
                       </Label>
@@ -360,16 +365,6 @@ export default function FindAHome() {
                         required
                       />
                     </div>
-                  </div>
-                  <div className="space-y-1">
-                    <Label htmlFor="motivoDoResgate" className="text-xs">
-                      Motivo do Resgate / Histórico de Vida
-                    </Label>
-                    <Input
-                      id="motivoDoResgate"
-                      name="motivoDoResgate"
-                      placeholder="Ex: Abandono nas ruas"
-                    />
                   </div>
                   <div className="flex gap-4 pt-1">
                     <div className="flex items-center space-x-2">
