@@ -31,6 +31,7 @@ const allowedOrigins = [
   "http://localhost:5173",
   "http://localhost:5174",
   "http://localhost:3000",
+  "http://therian-heaven.vercel.app",
 ];
 
 app.use(
@@ -49,7 +50,7 @@ app.use(
 app.use(express.json());
 
 app.get("/", (req, res) => {
-  res.json({ message: "Servidor Therian Haven rodando" });
+  res.json({ message: "Servidor Therian Heaven rodando" });
 });
 
 app.get("/health", (req, res) => {

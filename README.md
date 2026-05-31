@@ -1,4 +1,4 @@
-﻿# 🐾 Therian Haven
+﻿# 🐾 Therian Heaven
 
 > *"Um lar para quem late, mia, ruge e às vezes também paga boleto."*
 
@@ -6,7 +6,7 @@
 
 ## O que é isso aqui?
 
-Therian Haven é uma plataforma full-stack de adoção e cuidados para **Therians** — pets com personalidade, histórias únicas e às vezes necessidades especiais que o petshop da esquina simplesmente não está preparado para lidar.
+Therian Heaven é uma plataforma full-stack de adoção e cuidados para **Therians** — pets com personalidade, histórias únicas e às vezes necessidades especiais que o petshop da esquina simplesmente não está preparado para lidar.
 
 Aqui você pode:
 - **Adotar** um companheiro peludo (ou escamoso, ou emplumado — sem julgamentos)
@@ -59,8 +59,8 @@ Antes de rodar, certifique-se que você tem:
 ### 1. Clone o repositório
 
 ```bash
-git clone https://github.com/NicolasSG/therian-haven.git
-cd therian-haven
+git clone https://github.com/NicolasSG/therian-heaven.git
+cd therian-heaven
 ```
 
 ### 2. Configurar o Backend
@@ -118,7 +118,7 @@ Acesse `http://localhost:5173` e seja recebido pela tela inicial com nosso masco
 ## Estrutura do Projeto
 
 ```
-therian-haven/
+therian-heaven/
 ├── backend/
 │   ├── app.js                  # Coração do servidor
 │   ├── controllers/            # Quem manda de verdade
