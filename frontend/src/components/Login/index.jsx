@@ -24,6 +24,7 @@ export default function Login() {
   const [adressError, setAdressError] = useState("");
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
+  const [activeTab, setActiveTab] = useState("");
 
   async function handleSigninSubmit(e) {
     e.preventDefault();

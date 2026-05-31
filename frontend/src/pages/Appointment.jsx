@@ -14,9 +14,9 @@ import {
   validateTutorName,
   validatePhone,
 } from "@/validation/validators";
-import { ConfirmationDialog } from "./components/ConformationDialog";
-import { ServiceSelection } from "./components/ServiceSelection";
-import { SidebarSummary } from "./components/SidebarSummary";
+import { ConfirmationDialog } from "@/components/ConformationDialog";
+import { ServiceSelection } from "@/components/ServiceSelection";
+import { SidebarSummary } from "@/components/SidebarSummary";
 
 export default function Appointment() {
   const [servico, setServico] = useState("banho");

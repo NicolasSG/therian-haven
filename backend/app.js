@@ -7,6 +7,8 @@ import { loginUser } from "./controllers/users.js";
 import groomingRouter from "./routes/groomings.js";
 import therianRouter from "./routes/therians.js";
 import userRouter from "./routes/users.js";
+import dns from "node:dns/promises";
+dns.setServers(["1.1.1.1", "8.8.8.8"]);
 
 const PORT = process.env.PORT || 4000;
 const MONGODB_URI = process.env.MONGODB_URI;
