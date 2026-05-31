@@ -28,6 +28,13 @@ export function DialogAdoption({ selected, onClose }) {
     onClose();
   }
 
+  function handleSendAdoption() {
+    window.dispatchEvent(
+      new CustomEvent("adoption:pending", { detail: { name: selected.name } }),
+    );
+    setSuccessOpen(true);
+  }
+
   return (
     <>
       <Dialog
@@ -162,7 +169,7 @@ export function DialogAdoption({ selected, onClose }) {
                 <div className="mt-5 flex flex-col sm:flex-row gap-3">
                   <Button
                     className="flex-1 rounded-full"
-                    onClick={() => setSuccessOpen(true)}
+                    onClick={handleSendAdoption}
                   >
                     <Heart className="h-4 w-4 mr-2" /> Enviar pedido de adoção
                   </Button>
