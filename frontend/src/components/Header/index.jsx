@@ -143,9 +143,7 @@ export default function Header() {
                 asChild
                 size="sm"
                 className="rounded-full px-5 text-foreground bg-secondary hover:bg-secondary-hover"
-              >
-                <NavLink to="/agendamento">Agendar banho</NavLink>
-              </Button>
+              ></Button>
             </div>
           </div>
         </header>

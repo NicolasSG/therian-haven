@@ -17,14 +17,13 @@ export default function Main() {
             </span>
 
             <h1 className="mt-5 font-display text-5xl md:text-6xl font-bold leading-[1.05] text-foreground max-w-2xl">
-              Cuidado de verdade
-              <br />
-              para o seu melhor amigo.
+              Um paraíso criado para eles.
             </h1>
 
             <p className="mt-5 text-lg text-muted-foreground max-w-xl">
-              Banho, tosa e momentos de carinho — e um espaço para conectar
-              animais resgatados a famílias que vão amá-los para sempre.
+              Banho, tosa e muito carinho em um lugar criado para therianzinhos.
+              Um espaço onde eles recebem os cuidados que merecem e podem
+              encontrar uma família para chamar de lar.
             </p>
 
             <div className="mt-8 flex flex-wrap gap-3">
@@ -43,8 +42,7 @@ export default function Main() {
 
             <div className="mt-8 flex items-center gap-4 text-sm text-muted-foreground">
               <div className="flex items-center gap-1 text-foreground font-medium">
-                <Star className="h-4 w-4 fill-current text-accent" />{" "}
-                2.3/5
+                <Star className="h-4 w-4 fill-current text-accent" /> 2.3/5
                 <span className="text-foreground font-normal">
                   de tutores felizes
                 </span>
@@ -72,4 +70,3 @@ export default function Main() {
     </div>
   );
 }
-

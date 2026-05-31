@@ -104,7 +104,7 @@ export function DialogAdoption({ selected, onClose }) {
         open={!!selected && !successOpen}
         onOpenChange={(open) => !open && onClose()}
       >
-        <DialogContent className="max-w-3xl max-h-[90vh] overflow-y-auto p-0 rounded-3xl bg-success">
+        <DialogContent className="max-w-3xl max-h-[90vh] overflow-y-auto p-0 rounded-3xl bg-card border border-border/50 shadow-soft [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
           {selected && (
             <>
               <div className="grid md:grid-cols-2">
@@ -119,10 +119,10 @@ export function DialogAdoption({ selected, onClose }) {
                 <div className="p-6 md:p-8">
                   <DialogHeader>
                     <div className="flex items-center gap-2 mb-2">
-                      <span className="text-xs rounded-full bg-sage-soft text-sage-deep px-2.5 py-1 font-medium">
+                      <span className="text-xs rounded-full bg-success-soft text-success-deep px-2.5 py-1 font-medium">
                         {selected.species}
                       </span>
-                      <span className="text-xs rounded-full bg-muted px-2.5 py-1 font-medium">
+                      <span className="text-xs rounded-full bg-secondary text-secondary-foreground px-2.5 py-1 font-medium">
                         {selected.sex}
                       </span>
                     </div>
@@ -188,7 +188,7 @@ export function DialogAdoption({ selected, onClose }) {
 
               {/* Seção Inferior: Carteira de Vacinação e Ações */}
               <div className="px-6 md:px-8 pb-8">
-                <div className="rounded-2xl border border-border bg-sage-soft/10 p-5">
+                <div className="rounded-2xl border border-border bg-muted/40 p-5">
                   <div className="flex items-center gap-2 mb-4">
                     <Syringe className="h-5 w-5 text-primary" />
                     <h3 className="font-display text-xl font-semibold">
@@ -231,14 +231,14 @@ export function DialogAdoption({ selected, onClose }) {
                 {/* Botões de Ação */}
                 <div className="mt-5 flex flex-col sm:flex-row gap-3">
                   <Button
-                    className="flex-1 rounded-full"
+                    className="flex-1 rounded-full h-12 shadow-soft"
                     onClick={handleSendAdoption}
                   >
                     <Heart className="h-4 w-4 mr-2" /> Enviar pedido de adoção
                   </Button>
                   <Button
                     variant="outline"
-                    className="rounded-full"
+                    className="rounded-full h-12 px-7 bg-secondary text-secondary-foreground hover:bg-secondary-hover border-0"
                     onClick={onClose}
                   >
                     Fechar
@@ -254,7 +254,7 @@ export function DialogAdoption({ selected, onClose }) {
         open={successOpen}
         onOpenChange={(open) => !open && handleCloseSuccess()}
       >
-        <DialogContent className="max-w-sm rounded-3xl text-center">
+        <DialogContent className="max-w-sm rounded-3xl text-center bg-card border border-border/50">
           <DialogHeader>
             <DialogTitle className="text-2xl">
               Voce ja e um realizador de sonhos! 🥳
@@ -278,7 +278,7 @@ export function DialogAdoption({ selected, onClose }) {
           </div>
           <DialogFooter>
             <Button
-              className="w-full rounded-full"
+              className="w-full rounded-full h-12 shadow-soft"
               onClick={handleCloseSuccess}
             >
               Ok
