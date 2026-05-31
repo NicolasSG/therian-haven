@@ -13,7 +13,9 @@ export default function Login() {
   const [nameError, setNameError] = useState("");
   const [phoneError, setPhoneError] = useState("");
   const [cityError, setCityError] = useState("");
-  // const [adressError, setAdressError] = useState("");
+  const [adressError, setAdressError] = useState("");
+  const [emailError, setEmailError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
 
   //validação do nome:
   function validateName(e) {
@@ -51,6 +53,37 @@ export default function Login() {
   }
 
   //validação do endereço
+  function validateAdress(e) {
+    const input = e.target;
+
+    if (input.validity.tooShort) {
+      setAdressError("Digite uma cidade válida");
+    } else {
+      setAdressError("");
+    }
+  }
+
+  //validação do email
+  function validateEmail(e) {
+    const valor = e.target.value;
+
+    if (valor.length > 0 && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(valor)) {
+      setEmailError("Digite um e-mail válido");
+    } else {
+      setEmailError("");
+    }
+  }
+
+  //validação da senha
+  function validatePassword(e) {
+    const input = e.target;
+
+    if (input.validity.tooShort) {
+      setPasswordError("A senha deve ter pelo menos 8 caracteres");
+    } else {
+      setPasswordError("");
+    }
+  }
 
   async function handleSigninSubmit(e) {
     e.preventDefault();
@@ -147,7 +180,11 @@ export default function Login() {
                     type="email"
                     placeholder="seu@email.com"
                     required
+                    onChange={validateEmail}
                   />
+                  {emailError && (
+                    <p className="text-sm text-destructive">{emailError}</p>
+                  )}
                 </div>
                 <div className="space-y-1.5">
                   <Label htmlFor="si-password">Senha</Label>
@@ -156,9 +193,13 @@ export default function Login() {
                     name="password"
                     type="password"
                     required
-                    placeholder="******"
+                    placeholder="********"
                     minLength={8}
+                    onChange={validatePassword}
                   />
+                  {passwordError && (
+                    <p className="text-sm text-destructive">{passwordError}</p>
+                  )}
                 </div>
                 {feedback && (
                   <p
@@ -233,7 +274,7 @@ export default function Login() {
                   </div>
                 </div>
 
-                {/* <div className="space-y-1.5">
+                <div className="space-y-1.5">
                   <Label htmlFor="su-address">Endereço</Label>
                   <Input
                     id="su-address"
@@ -247,7 +288,7 @@ export default function Login() {
                   {adressError && (
                     <p className="text-sm text-destructive">{adressError}</p>
                   )}
-                </div> */}
+                </div>
 
                 <div className="space-y-1.5">
                   <Label htmlFor="su-email">E-mail</Label>
@@ -257,7 +298,11 @@ export default function Login() {
                     type="email"
                     placeholder="seu@email.com"
                     required
+                    onChange={validateEmail}
                   />
+                  {emailError && (
+                    <p className="text-sm text-destructive">{emailError}</p>
+                  )}
                 </div>
 
                 <div className="space-y-1.5">
@@ -268,7 +313,12 @@ export default function Login() {
                     type="password"
                     minLength={8}
                     required
+                    placeholder="********"
+                    onChange={validatePassword}
                   />
+                  {passwordError && (
+                    <p className="text-sm text-destructive">{passwordError}</p>
+                  )}
                 </div>
 
                 {feedback && (

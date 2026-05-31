@@ -208,6 +208,7 @@ export default function Appointment() {
                   required
                   minLength={2}
                   maxLength={50}
+                  type="text"
                   placeholder="Ex: Thor"
                 />
               </div>
@@ -223,6 +224,7 @@ export default function Appointment() {
                   required
                   minLength={2}
                   maxLength={50}
+                  type="text"
                   placeholder="Ex: Shih Tzu, pequeno"
                 />
               </div>
@@ -236,8 +238,10 @@ export default function Appointment() {
                     maxLength: 100,
                   })}
                   required
+                  type="text"
                   minLength={2}
                   maxLength={100}
+                  pattern="[A-Za-zÀ-ÿ\s]+"
                   placeholder="Como podemos te chamar?"
                 />
               </div>
