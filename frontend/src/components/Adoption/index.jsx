@@ -36,17 +36,17 @@ export default function Adoption({ preview = false }) {
 
   return (
     <div>
-      <section className="bg-secondary/40 py-20">
+      <section className="bg-background py-20">
         <div className="mx-auto max-w-7xl px-6">
           <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-12">
             <div>
-              <p className="text-sm font-medium text-sage-deep uppercase tracking-wider">
+              <p className="text-sm font-medium text-primary uppercase tracking-wider">
                 Adoção
               </p>
-              <h2 className="mt-2 text-4xl font-bold text-foreground bg-warning text-info">
+              <h2 className="mt-2 text-4xl font-bold text-foreground">
                 Eles estão à sua espera
               </h2>
-              <p className="mt-3 text-muted-foreground max-w-xl text-warning">
+              <p className="mt-3 text-muted-foreground max-w-xl">
                 Enquanto você lê esta mensagem, muitos deles passam mais um dia
                 sem uma família. Adotar não muda apenas a vida de um animal —
                 muda o mundo dele.
@@ -55,7 +55,7 @@ export default function Adoption({ preview = false }) {
             {preview && (
               <NavLink
                 to={viewAllPath}
-                className="text-sm font-medium text-sage-deep inline-flex items-center gap-1 hover:gap-2 transition-all"
+                className="text-sm font-medium text-primary inline-flex items-center gap-1 hover:gap-2 transition-all"
               >
                 Ver todos <ArrowRight className="h-4 w-4" />
               </NavLink>
