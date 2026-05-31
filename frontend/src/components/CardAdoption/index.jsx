@@ -190,7 +190,8 @@ export default function CardAdoption({ limit = null }) {
                   onClick={() => setSelected(a)}
                   className="flex-1 rounded-full bg-success"
                 >
-                  <Heart className="h-4 w-4 mr-2" /> Quero adotar {a.name.split(" ")[0]}
+                  <Heart className="h-4 w-4 mr-2" /> Quero adotar{" "}
+                  {a.name.split(" ")[0]}
                 </Button>
                 {isOwner(a) && (
                   <Button
@@ -216,18 +217,20 @@ export default function CardAdoption({ limit = null }) {
       >
         <AlertDialogContent className="rounded-3xl w-[340px] p-4">
           <AlertDialogHeader>
-            <AlertDialogTitle>Eliminar card</AlertDialogTitle>
+            <AlertDialogTitle>Pelo amor de Deus</AlertDialogTitle>
             <AlertDialogDescription>
-              Tens a certeza que queres eliminar o card de{" "}
-              <strong>{deleteTarget?.name}</strong>? Esta ação não pode ser
-              desfeita.
+              Eu te peço, <strong>{deleteTarget?.name} </strong> precisa de uma
+              oportunidade. Ele é um therianZinho tão fofo e merece encontrar um
+              lar cheio de amor. Por favor, pense bem antes de tomar essa
+              decisão. Ele pode ser o companheiro perfeito para alguém e merece
+              uma chance de ser feliz.
             </AlertDialogDescription>
           </AlertDialogHeader>
           <div className="w-full overflow-hidden rounded-xl">
             <iframe
-              src="https://www.tiktok.com/embed/v2/7621270787517058325?autoplay=1&loop=1"
+              src="https://www.youtube.com/embed/qW2qfKlqbQk?autoplay=1&loop=1&playlist=qW2qfKlqbQk"
               width="100%"
-              height="700"
+              height="500"
               frameBorder="0"
               allow="autoplay; encrypted-media"
               allowFullScreen
