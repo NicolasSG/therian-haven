@@ -16,7 +16,7 @@ export default function index() {
                 className="h-full w-full object-cover"
               />
             </span>
-            Therian Haven
+            Therian Heaven
           </div>
           <p className="mt-3 text-sm text-muted-foreground max-w-sm">
             Banho, tosa e amor para o seu melhor amigo. Também cuidamos de quem
@@ -27,7 +27,7 @@ export default function index() {
           <h4 className="font-display font-semibold text-sm mb-3">Contato</h4>
           <ul className="space-y-2 text-sm text-muted-foreground">
             <li>(11) 99999-0000</li>
-            <li>ola@therianhaven.com</li>
+            <li>ola@therianheaven.com</li>
             <li>Rua das Flores, 123 — SP</li>
           </ul>
         </div>
