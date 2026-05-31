@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from "./components/Login";
 import Roots from "./pages/Root";
 import Home from "./pages/Home";
+import FindAHome from "./pages/FindAHome";
 import Appointment from "./pages/Appointment";
 
 function App() {
@@ -13,7 +14,9 @@ function App() {
           <Route index element={<Home />} />
           <Route path="agendamento" element={<Appointment />} />
           <Route path="adocao" element={<Adoption />} />
+          <Route path="adoption" element={<Adoption />} />
           <Route path="login" element={<Login />} />
+          <Route path="encontre-um-lar" element={<FindAHome />} />
         </Route>
       </Routes>
     </BrowserRouter>

@@ -1,8 +1,9 @@
 import { Outlet } from "react-router-dom";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
+import { Toaster } from "@/components/ui/toaster";
 
-export default function Root() {
+export default function Roots() {
   return (
     <>
       <Header />
@@ -12,6 +13,7 @@ export default function Root() {
       </main>
 
       <Footer />
+      <Toaster />
     </>
   );
 }

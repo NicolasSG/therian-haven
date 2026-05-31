@@ -31,19 +31,19 @@ export default function Service() {
     },
   ];
   return (
-    <section className="mx-auto  px-6 py-20 bg-green-600 ">
+    <section className="mx-auto px-6 py-20 bg-surface">
       <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-12">
         <div>
-          <p className="text-sm font-medium text-sage-deep uppercase tracking-wider">
+          <p className="text-sm font-medium text-primary uppercase tracking-wider">
             Nossos serviços
           </p>
-          <h2 className="mt-2 text-4xl font-bold text-foreground">
-            Tudo o que seu therianZinho precisa em um só lugar
+          <h2 className="mt-2 text-4xl font-bold text-secondary-foreground">
+            Tudo o que um Therian precisa em um só lugar
           </h2>
         </div>
         <NavLink
           to="/agendamento"
-          className="text-sm font-medium text-sage-deep inline-flex items-center gap-1 hover:gap-2 transition-all"
+          className="text-sm font-medium text-foreground inline-flex items-center gap-1 hover:gap-2 transition-all"
         >
           Ver todos os serviços <ArrowRight className="h-4 w-4" />
         </NavLink>
@@ -53,7 +53,7 @@ export default function Service() {
         {services.map(({ icon: Icon, title, desc }) => (
           <div
             key={title}
-            className="bg-card rounded-2xl p-6 shadow-card border border-border/50 hover:shadow-soft hover:-translate-y-1 transition-all text-red-600"
+            className="bg-card rounded-2xl p-6 shadow-card border border-border/50 hover:shadow-soft hover:-translate-y-1 hover:cursor-pointer transition-all text-foreground"
           >
             <div className="grid place-items-center h-12 w-12 rounded-xl bg-sage-soft mb-4">
               <Icon className="h-5 w-5 text-sage-deep" />

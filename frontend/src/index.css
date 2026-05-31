@@ -6,40 +6,186 @@
 
 @tailwind utilities;
 
+html {
+  color: var(--foreground);
+  background-color: var(--background);
+}
+
+body {
+  min-height: 100%;
+  background: inherit;
+  color: inherit;
+}
 
 :root {
+  /* Arredondamento padrão de cards, inputs e botões */
   --radius: 1rem;
 
-  /* Paleta Neon & Cyber High-Contrast */
-  --sand: #0f111a; /* Fundo principal (Preto Azulado) */
-  --terracotta-soft: #25162b; /* Roxo escuro para detalhes em blocos */
-  --terracotta: #ff007f; /* Rosa Choque Neon (Principal) */
-  --terracotta-deep: #39ff14; /* Verde Limão Elétrico / Neon */
+  /* ==================================================
+     BASE DA INTERFACE
+  ================================================== */
 
-  --background: #0f111a; /* Fundo escuro absoluto */
-  --foreground: #ffffff; /* Texto em branco puro para leitura */
-  --card: #161925; /* Cards cinza-grafite escuro */
-  --card-foreground: #ffffff;
-  --popover: #161925;
-  --popover-foreground: #ffffff;
-  --primary: #ff007f; /* Rosa Neon */
+  /* Cor principal do fundo da aplicação */
+  --background: #0d1117;
+
+  /* Cor principal dos textos */
+  --foreground: #f8fafc;
+
+  /* Fundo de cards, seções e containers */
+  --card: #151b23;
+
+  /* Texto exibido dentro de cards */
+  --card-foreground: #f8fafc;
+
+  /* Fundo de dropdowns, menus e popovers */
+  --popover: #151b23;
+
+  /* Texto exibido dentro de popovers */
+  --popover-foreground: #f8fafc;
+
+  /* ==================================================
+     IDENTIDADE VISUAL DA MARCA
+  ================================================== */
+
+  /* CTA principal: Adotar, Entrar, Cadastrar, Salvar */
+  --primary: #ff6b9f;
+
+  /* Cor de hover para botões e CTA primário */
+  --primary-hover: #fcc2d6;
+
+  /* Texto exibido sobre a cor principal */
   --primary-foreground: #ffffff;
-  --secondary: #00f0ff; /* Ciano / Azul Elétrico */
-  --secondary-foreground: #000000; /* Texto preto sobre o botão ciano para contraste */
-  --muted: #1f2335;
-  --muted-foreground: #a0aec0;
-  --accent: #39ff14; /* Verde Neon */
-  --accent-foreground: #000000;
-  --destructive: #ff3333;
+
+  /* ==================================================
+     AÇÕES SECUNDÁRIAS
+  ================================================== */
+
+  /* Botões secundários, filtros e ações neutras */
+  --secondary: #1d2633;
+  
+  --secondary-hover: #61748e;
+
+  /* Texto exibido sobre a cor secundária */
+  --secondary-foreground: #f8fafc;
+
+  /* ==================================================
+     DESTAQUES
+  ================================================== */
+
+  /* Cor para destacar elementos importantes da interface */
+  --accent: #ff6b9f ;
+
+  /* Texto exibido sobre elementos destacados */
+  --accent-foreground: #ffffff;
+
+  /* ==================================================
+     ESTADOS DE SUCESSO
+  ================================================== */
+
+  /* Cadastro concluído, adoção aprovada, confirmação */
+  --success: #34d399;
+
+  /* Texto exibido sobre elementos de sucesso */
+  --success-foreground: #ffffff;
+
+  /* ==================================================
+     ESTADOS DE AVISO
+  ================================================== */
+
+  /* Informações que exigem atenção do usuário */
+  --warning: #fbbf24;
+
+  /* Texto exibido sobre elementos de aviso */
+  --warning-foreground: #111827;
+
+  /* ==================================================
+     ESTADOS DE ERRO
+  ================================================== */
+
+  /* Exclusão, falha, erro ou ação destrutiva */
+  --destructive: #f87171;
+
+  /* Texto exibido sobre elementos destrutivos */
   --destructive-foreground: #ffffff;
-  --border: #2d3142;
-  --input: #1f2335;
-  --ring: #ff007f;
 
-  /* Gradientes Psicodélicos e Sombras com "Glow" Neon */
-  --gradient-hero: linear-gradient(135deg, #161925 0%, #25162b 100%);
-  --gradient-soft: linear-gradient(180deg, #25162b 0%, #0f111a 100%);
+  /* ==================================================
+     ESTADOS INFORMATIVOS
+  ================================================== */
 
-  /* Sombras que imitam o efeito de luz negra/neon brilhando */
-  --shadow-soft: 0;
+  /* Dicas, informações e mensagens neutras */
+  --info: #60a5fa;
+
+  /* Texto exibido sobre elementos informativos */
+  --info-foreground: #ffffff;
+
+  /* ==================================================
+     VARIANTES DE ESTADO SUAVE
+  ================================================== */
+
+  /* Estado de sucesso leve para backgrounds e badges */
+  --success-soft: #dcfce7;
+  --success-deep: #166534;
+
+  /* Estado de aviso leve para backgrounds e badges */
+  --warning-soft: #fef3c7;
+  --warning-deep: #92400e;
+
+  /* Estado destrutivo leve para backgrounds e badges */
+  --destructive-soft: #fecaca;
+  --destructive-deep: #991b1b;
+
+  /* ==================================================
+     ESTRUTURA DA INTERFACE
+  ================================================== */
+
+  /* Fundo de elementos discretos ou desabilitados */
+  --muted: #111827;
+
+  /* Texto secundário, legendas e descrições */
+  --muted-foreground: #94a3b8;
+
+  /* Bordas de cards, divisores e inputs */
+  --border: #263244;
+
+  /* Fundo padrão de campos de formulário */
+  --input: #151b23;
+
+  /* Cor utilizada em focus rings e acessibilidade */
+  --ring: #ff6b9f;
+
+  /* ==================================================
+     GRADIENTES
+  ================================================== */
+
+  /* Gradiente principal para hero sections */
+  --gradient-hero: linear-gradient(
+    135deg,
+    #1a2230 0%,
+    #0d1117 100%
+  );
+
+  /* Gradiente suave para seções e áreas de destaque */
+  --gradient-soft: linear-gradient(
+    180deg,
+    #151b23 0%,
+    #0d1117 100%
+  );
+
+  /* ==================================================
+     SOMBRAS
+  ================================================== */
+
+  /* Sombra padrão para cards, modais e elementos elevados */
+  --shadow-soft: 0 8px 32px rgba(0, 0, 0, 0.35);
+}
+
+/* Botões primários com hover levemente mais claro */
+.bg-primary:hover {
+  background-color: var(--primary-hover);
+}
+
+/* Hover para elementos com bg-secondary — mesma lógica do primary */
+.bg-secondary:hover {
+   background-color: var(--secondary-hover);
+   color: var(--secondary-foreground);
 }

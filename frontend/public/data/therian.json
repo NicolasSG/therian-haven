@@ -11,12 +11,8 @@
     "estado": "São Paulo",
     "fotoPerfil": "https://picsum.photos/seed/aurora/600/600",
     "escolaridade": "Ensino Superior Completo",
-    "motivoDoResgate": "Encontrada sozinha em um servidor de Discord.",
     "castrado": false,
-    "necessidadesEspeciais": [
-      "Wi-Fi",
-      "Café"
-    ],
+    "necessidadesEspeciais": ["Wi-Fi", "Café"],
     "vacinas": [
       {
         "nome": "COVID-19",
@@ -44,12 +40,8 @@
     "estado": "São Paulo",
     "fotoPerfil": "https://picsum.photos/seed/raven/600/600",
     "escolaridade": "Ensino Superior Incompleto",
-    "motivoDoResgate": "Observava pessoas pela janela por tempo excessivo.",
     "castrado": false,
-    "necessidadesEspeciais": [
-      "Livros",
-      "Silêncio"
-    ],
+    "necessidadesEspeciais": ["Livros", "Silêncio"],
     "vacinas": [
       {
         "nome": "Influenza",
@@ -71,12 +63,8 @@
     "estado": "Paraná",
     "fotoPerfil": "https://picsum.photos/seed/luna/600/600",
     "escolaridade": "Ensino Superior Completo",
-    "motivoDoResgate": "Encontrada acumulando memes em excesso.",
     "castrado": false,
-    "necessidadesEspeciais": [
-      "Cobertores",
-      "Chocolate quente"
-    ],
+    "necessidadesEspeciais": ["Cobertores", "Chocolate quente"],
     "vacinas": [
       {
         "nome": "dT (Difteria e Tétano)",
@@ -98,11 +86,8 @@
     "estado": "São Paulo",
     "fotoPerfil": "https://picsum.photos/seed/nyx/600/600",
     "escolaridade": "Ensino Superior Incompleto",
-    "motivoDoResgate": "Encontrada em fóruns obscuros às 3 da manhã.",
     "castrado": false,
-    "necessidadesEspeciais": [
-      "Silêncio"
-    ],
+    "necessidadesEspeciais": ["Silêncio"],
     "vacinas": [
       {
         "nome": "Influenza",
@@ -124,11 +109,8 @@
     "estado": "Minas Gerais",
     "fotoPerfil": "https://picsum.photos/seed/atlas/600/600",
     "escolaridade": "Ensino Superior Completo",
-    "motivoDoResgate": "Perdido em grupos de receitas.",
     "castrado": false,
-    "necessidadesEspeciais": [
-      "Comida caseira"
-    ],
+    "necessidadesEspeciais": ["Comida caseira"],
     "vacinas": [
       {
         "nome": "COVID-19",
@@ -150,11 +132,8 @@
     "estado": "São Paulo",
     "fotoPerfil": "https://picsum.photos/seed/kai/600/600",
     "escolaridade": "Ensino Superior Completo",
-    "motivoDoResgate": "Transformava toda conversa em competição.",
     "castrado": false,
-    "necessidadesEspeciais": [
-      "Academia"
-    ],
+    "necessidadesEspeciais": ["Academia"],
     "vacinas": [
       {
         "nome": "Febre Amarela",
@@ -176,11 +155,8 @@
     "estado": "Paraná",
     "fotoPerfil": "https://picsum.photos/seed/willow/600/600",
     "escolaridade": "Ensino Superior Incompleto",
-    "motivoDoResgate": "Perdida em uma feira de artesanato.",
     "castrado": false,
-    "necessidadesEspeciais": [
-      "Fones de ouvido"
-    ],
+    "necessidadesEspeciais": ["Fones de ouvido"],
     "vacinas": [
       {
         "nome": "Tríplice Viral",
@@ -202,12 +178,8 @@
     "estado": "Rio Grande do Sul",
     "fotoPerfil": "https://picsum.photos/seed/fenrir/600/600",
     "escolaridade": "Ensino Superior Completo",
-    "motivoDoResgate": "Abandonado após liderar um grupo de RPG grande demais.",
     "castrado": false,
-    "necessidadesEspeciais": [
-      "Companhia",
-      "Chimarrão"
-    ],
+    "necessidadesEspeciais": ["Companhia", "Chimarrão"],
     "vacinas": [
       {
         "nome": "COVID-19",

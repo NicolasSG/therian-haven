@@ -1,12 +1,31 @@
 import cors from "cors";
 import "dotenv/config";
 import express from "express";
+import mongoose from "mongoose";
+import User from "./models/users.js";
+import { loginUser } from "./controllers/users.js";
 import groomingRouter from "./routes/groomings.js";
 import therianRouter from "./routes/therians.js";
 import userRouter from "./routes/users.js";
+import dns from "node:dns/promises";
+dns.setServers(["1.1.1.1", "8.8.8.8"]);
 
 const PORT = process.env.PORT || 4000;
+const MONGODB_URI = process.env.MONGODB_URI;
 const app = express();
+
+if (!MONGODB_URI) {
+  throw new Error("MONGODB_URI nao configurada no .env");
+}
+
+try {
+  await mongoose.connect(MONGODB_URI);
+  await User.syncIndexes();
+  console.log("MongoDB conectado com sucesso");
+} catch (error) {
+  console.error("Erro ao conectar ao MongoDB", error);
+  process.exit(1);
+}
 
 const allowedOrigins = [
   "http://localhost:5173",
@@ -37,7 +56,9 @@ app.get("/health", (req, res) => {
   res.json({ status: "ok" });
 });
 
+app.post("/login", loginUser);
 app.use("/therians", therianRouter);
+app.use("/grooming", groomingRouter);
 app.use("/groomings", groomingRouter);
 app.use("/users", userRouter);
 
