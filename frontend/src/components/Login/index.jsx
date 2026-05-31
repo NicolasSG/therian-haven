@@ -81,8 +81,9 @@ export default function Login() {
       form.reset();
       setFeedback({
         type: "success",
-        message: "Conta criada com sucesso! Usuario salvo no banco de dados.",
+        message: "Conta criada com sucesso! Faça login para continuar.",
       });
+      setActiveTab("signin");
     } catch (error) {
       setFeedback({
         type: "error",
@@ -104,7 +105,7 @@ export default function Login() {
             Entre ou crie uma conta para enviar pedidos de adoção.
           </p>
 
-          <Tabs defaultValue="signin" className="mt-6">
+          <Tabs value={activeTab} onValueChange={setActiveTab} className="mt-6">
             <TabsList className="grid grid-cols-2 w-full">
               <TabsTrigger value="signin">Entrar</TabsTrigger>
               <TabsTrigger value="signup">Cadastrar</TabsTrigger>

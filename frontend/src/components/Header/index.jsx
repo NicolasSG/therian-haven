@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import therianLogo from "@/assets/therian logo.png";
 import { LogOut } from "lucide-react";
 import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
@@ -44,43 +45,71 @@ export default function Header() {
   return (
     <header className="header-container">
       <div className="header-wrapper">
-        <header className="sticky top-0 z-50 backdrop-blur-md bg-background/80 border-b border-border/60">
+        <header className="sticky top-0 z-50 backdrop-blur-md bg-background border-b border-border/60">
           <div className="mx-auto max-w-7xl px-6 h-16 flex items-center justify-between">
             <NavLink
               to="/"
               className="flex items-center gap-2 font-display font-bold text-lg text-foreground"
             >
-              <span className="grid place-items-center h-9 w-9 rounded-full bg-primary text-primary-foreground">
-                {/* <PawPrint className="h-4 w-4" /> */}
+              <span className="grid place-items-center h-9 w-9 rounded-full bg-primary text-primary-foreground overflow-hidden">
+                <img
+                  src={therianLogo}
+                  alt="Therian Heaven"
+                  className="h-full w-full object-cover"
+                />
               </span>
-              Therian Haven
+              Therian Heaven
             </NavLink>
 
             <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-muted-foreground">
               <NavLink
                 to="/"
-                className="hover:text-foreground transition-colors"
+                className={({ isActive }) =>
+                  `transition-colors ${
+                    isActive
+                      ? "text-primary font-semibold border-b-2 border-primary pb-1"
+                      : "text-muted-foreground hover:text-foreground"
+                  }`
+                }
               >
                 Início
               </NavLink>
 
               <NavLink
                 to="/agendamento"
-                className="hover:text-foreground transition-colors"
+                className={({ isActive }) =>
+                  `transition-colors ${
+                    isActive
+                      ? "text-primary font-semibold border-b-2 border-primary pb-1"
+                      : "text-muted-foreground hover:text-foreground"
+                  }`
+                }
               >
                 Agendamento
               </NavLink>
 
               <NavLink
                 to="/adocao"
-                className="hover:text-foreground transition-colors"
+                className={({ isActive }) =>
+                  `transition-colors ${
+                    isActive
+                      ? "text-primary font-semibold border-b-2 border-primary pb-1"
+                      : "text-muted-foreground hover:text-foreground"
+                  }`
+                }
               >
                 Adoção
               </NavLink>
 
               <NavLink
                 to="/encontre-um-lar"
-                className="hover:text-foreground transition-colors"
+                className={({ isActive }) =>
+                  `transition-colors ${
+                    isActive
+                      ? "text-primary font-semibold border-b-2 border-primary pb-1"
+                      : "text-muted-foreground hover:text-foreground"
+                  }`
+                }
               >
                 Encontre um lar
               </NavLink>
@@ -92,7 +121,7 @@ export default function Header() {
                   type="button"
                   variant="outline"
                   size="sm"
-                  className="rounded-full px-4 gap-2"
+                  className="rounded-full px-4 gap-2 bg-primary text-foreground hover:bg-primary-hover"
                   onClick={handleLogout}
                 >
                   <span className="max-w-32 truncate">{user.nome}</span>
@@ -104,7 +133,7 @@ export default function Header() {
                   asChild
                   variant="outline"
                   size="sm"
-                  className="rounded-full px-5"
+                  className="rounded-full px-4 gap-2 bg-primary text-foreground hover:bg-primary-hover hover:text-primary-foreground"
                 >
                   <NavLink to="/login">Entrar</NavLink>
                 </Button>
@@ -113,10 +142,8 @@ export default function Header() {
               <Button
                 asChild
                 size="sm"
-                className="rounded-full px-5 bg-warning-deep"
-              >
-                <NavLink to="/agendamento">Agendar banho</NavLink>
-              </Button>
+                className="rounded-full px-5 text-foreground bg-secondary hover:bg-secondary-hover"
+              ></Button>
             </div>
           </div>
         </header>

@@ -1,8 +1,18 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { MapPin, Heart } from "lucide-react";
+import { MapPin, Heart, Trash2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from "@/components/ui/alert-dialog";
 import api from "@/utils/Api";
 import { DialogAdoption } from "../DialogAdoption";
 
@@ -14,15 +24,8 @@ const therianImages = Object.values(
   }),
 );
 
-function getImageIndex(seed) {
-  const chars = String(seed).split("");
-  const total = chars.reduce((sum, char) => sum + char.charCodeAt(0), 0);
-
-  return total % therianImages.length;
-}
-
 function normalizeTherian(therian, index) {
-  const imageIndex = getImageIndex(therian.id || therian._id || index);
+  const imageIndex = index % therianImages.length;
 
   return {
     id: therian._id || therian.id || therian.nome,
@@ -49,11 +52,33 @@ function normalizeTherian(therian, index) {
   };
 }
 
+function getLoggedUser() {
+  try {
+    return JSON.parse(localStorage.getItem("user") || "null");
+  } catch {
+    return null;
+  }
+}
+
 export default function CardAdoption({ limit = null }) {
   const [selected, setSelected] = useState(null);
   const [animais, setAnimais] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+  const [user, setUser] = useState(getLoggedUser);
+  const [deleteTarget, setDeleteTarget] = useState(null);
+
+  useEffect(() => {
+    function syncUser() {
+      setUser(getLoggedUser());
+    }
+    window.addEventListener("auth:change", syncUser);
+    window.addEventListener("storage", syncUser);
+    return () => {
+      window.removeEventListener("auth:change", syncUser);
+      window.removeEventListener("storage", syncUser);
+    };
+  }, []);
 
   useEffect(() => {
     let ignore = false;
@@ -85,6 +110,21 @@ export default function CardAdoption({ limit = null }) {
       ignore = true;
     };
   }, []);
+
+  async function handleDelete(a) {
+    try {
+      await api.deleteTherian(a.id);
+      localStorage.removeItem(`therian_owner_${a.id}`);
+      setAnimais((prev) => prev.filter((x) => x.id !== a.id));
+    } catch {
+      // silently ignore
+    }
+  }
+
+  function isOwner(a) {
+    if (!user?._id) return false;
+    return localStorage.getItem(`therian_owner_${a.id}`) === user._id;
+  }
 
   if (loading) {
     return (
@@ -133,7 +173,7 @@ export default function CardAdoption({ limit = null }) {
             <div className="p-6">
               <div className="flex items-baseline justify-between">
                 <h2 className="font-display text-2xl font-semibold">
-                  {a.name}
+                  {a.name.split(" ")[0]}
                 </h2>
                 <span className="text-xs rounded-full bg-sage-soft text-sage-deep px-2.5 py-1 font-medium">
                   {a.species}
@@ -145,18 +185,70 @@ export default function CardAdoption({ limit = null }) {
               <p className="text-xs text-muted-foreground mt-3 flex items-center gap-1.5">
                 <MapPin className="h-3.5 w-3.5" /> {a.local}
               </p>
-              <Button
-                onClick={() => setSelected(a)}
-                className="mt-5 w-full rounded-full bg-success"
-              >
-                <Heart className="h-4 w-4 mr-2" /> Quero adotar {a.name}
-              </Button>
+              <div className="mt-5 flex gap-2">
+                <Button
+                  onClick={() => setSelected(a)}
+                  className="flex-1 rounded-full bg-success"
+                >
+                  <Heart className="h-4 w-4 mr-2" /> Quero adotar {a.name.split(" ")[0]}
+                </Button>
+                {isOwner(a) && (
+                  <Button
+                    variant="outline"
+                    size="icon"
+                    className="rounded-full shrink-0 border-destructive/40 text-destructive hover:bg-destructive hover:text-destructive-foreground"
+                    onClick={() => setDeleteTarget(a)}
+                  >
+                    <Trash2 className="h-4 w-4" />
+                  </Button>
+                )}
+              </div>
             </div>
           </article>
         ))}
       </div>
 
       <DialogAdoption selected={selected} onClose={() => setSelected(null)} />
+
+      <AlertDialog
+        open={!!deleteTarget}
+        onOpenChange={(open) => !open && setDeleteTarget(null)}
+      >
+        <AlertDialogContent className="rounded-3xl w-[340px] p-4">
+          <AlertDialogHeader>
+            <AlertDialogTitle>Eliminar card</AlertDialogTitle>
+            <AlertDialogDescription>
+              Tens a certeza que queres eliminar o card de{" "}
+              <strong>{deleteTarget?.name}</strong>? Esta ação não pode ser
+              desfeita.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <div className="w-full overflow-hidden rounded-xl">
+            <iframe
+              src="https://www.tiktok.com/embed/v2/7621270787517058325?autoplay=1&loop=1"
+              width="100%"
+              height="700"
+              frameBorder="0"
+              allow="autoplay; encrypted-media"
+              allowFullScreen
+            />
+          </div>
+          <AlertDialogFooter>
+            <AlertDialogCancel className="rounded-full">
+              Cancelar
+            </AlertDialogCancel>
+            <AlertDialogAction
+              className="rounded-full bg-destructive text-destructive-foreground hover:bg-destructive/90"
+              onClick={() => {
+                handleDelete(deleteTarget);
+                setDeleteTarget(null);
+              }}
+            >
+              Eliminar
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </section>
   );
 }
