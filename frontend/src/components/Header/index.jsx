@@ -44,7 +44,7 @@ export default function Header() {
   return (
     <header className="header-container">
       <div className="header-wrapper">
-        <header className="sticky top-0 z-50 backdrop-blur-md bg-background/80 border-b border-border/60">
+        <header className="sticky top-0 z-50 backdrop-blur-md bg-background border-b border-border/60">
           <div className="mx-auto max-w-7xl px-6 h-16 flex items-center justify-between">
             <NavLink
               to="/"
@@ -53,7 +53,7 @@ export default function Header() {
               <span className="grid place-items-center h-9 w-9 rounded-full bg-primary text-primary-foreground">
                 {/* <PawPrint className="h-4 w-4" /> */}
               </span>
-              Therian Haven
+              Therian Heaven
             </NavLink>
 
             <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-muted-foreground">
@@ -92,7 +92,7 @@ export default function Header() {
                   type="button"
                   variant="outline"
                   size="sm"
-                  className="rounded-full px-4 gap-2"
+                  className="rounded-full px-4 gap-2 bg-accent text-foreground"
                   onClick={handleLogout}
                 >
                   <span className="max-w-32 truncate">{user.nome}</span>
@@ -104,7 +104,7 @@ export default function Header() {
                   asChild
                   variant="outline"
                   size="sm"
-                  className="rounded-full px-5"
+                  className="rounded-full px-4 gap-2 bg-accent text-foreground hover:bg-accent-foreground hover:text-accent"
                 >
                   <NavLink to="/login">Entrar</NavLink>
                 </Button>
@@ -113,7 +113,7 @@ export default function Header() {
               <Button
                 asChild
                 size="sm"
-                className="rounded-full px-5 bg-warning-deep"
+                className="rounded-full px-5 text-foreground bg-secondary"
               >
                 <NavLink to="/agendamento">Agendar banho</NavLink>
               </Button>
@@ -124,3 +124,5 @@ export default function Header() {
     </header>
   );
 }
+
+
