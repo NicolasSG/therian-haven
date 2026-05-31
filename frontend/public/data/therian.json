@@ -12,10 +12,7 @@
     "fotoPerfil": "https://picsum.photos/seed/aurora/600/600",
     "escolaridade": "Ensino Superior Completo",
     "castrado": false,
-    "necessidadesEspeciais": [
-      "Wi-Fi",
-      "Café"
-    ],
+    "necessidadesEspeciais": ["Wi-Fi", "Café"],
     "vacinas": [
       {
         "nome": "COVID-19",
@@ -44,10 +41,7 @@
     "fotoPerfil": "https://picsum.photos/seed/raven/600/600",
     "escolaridade": "Ensino Superior Incompleto",
     "castrado": false,
-    "necessidadesEspeciais": [
-      "Livros",
-      "Silêncio"
-    ],
+    "necessidadesEspeciais": ["Livros", "Silêncio"],
     "vacinas": [
       {
         "nome": "Influenza",
@@ -70,10 +64,7 @@
     "fotoPerfil": "https://picsum.photos/seed/luna/600/600",
     "escolaridade": "Ensino Superior Completo",
     "castrado": false,
-    "necessidadesEspeciais": [
-      "Cobertores",
-      "Chocolate quente"
-    ],
+    "necessidadesEspeciais": ["Cobertores", "Chocolate quente"],
     "vacinas": [
       {
         "nome": "dT (Difteria e Tétano)",
@@ -96,9 +87,7 @@
     "fotoPerfil": "https://picsum.photos/seed/nyx/600/600",
     "escolaridade": "Ensino Superior Incompleto",
     "castrado": false,
-    "necessidadesEspeciais": [
-      "Silêncio"
-    ],
+    "necessidadesEspeciais": ["Silêncio"],
     "vacinas": [
       {
         "nome": "Influenza",
@@ -121,9 +110,7 @@
     "fotoPerfil": "https://picsum.photos/seed/atlas/600/600",
     "escolaridade": "Ensino Superior Completo",
     "castrado": false,
-    "necessidadesEspeciais": [
-      "Comida caseira"
-    ],
+    "necessidadesEspeciais": ["Comida caseira"],
     "vacinas": [
       {
         "nome": "COVID-19",
@@ -146,9 +133,7 @@
     "fotoPerfil": "https://picsum.photos/seed/kai/600/600",
     "escolaridade": "Ensino Superior Completo",
     "castrado": false,
-    "necessidadesEspeciais": [
-      "Academia"
-    ],
+    "necessidadesEspeciais": ["Academia"],
     "vacinas": [
       {
         "nome": "Febre Amarela",
@@ -171,9 +156,7 @@
     "fotoPerfil": "https://picsum.photos/seed/willow/600/600",
     "escolaridade": "Ensino Superior Incompleto",
     "castrado": false,
-    "necessidadesEspeciais": [
-      "Fones de ouvido"
-    ],
+    "necessidadesEspeciais": ["Fones de ouvido"],
     "vacinas": [
       {
         "nome": "Tríplice Viral",
@@ -196,10 +179,7 @@
     "fotoPerfil": "https://picsum.photos/seed/fenrir/600/600",
     "escolaridade": "Ensino Superior Completo",
     "castrado": false,
-    "necessidadesEspeciais": [
-      "Companhia",
-      "Chimarrão"
-    ],
+    "necessidadesEspeciais": ["Companhia", "Chimarrão"],
     "vacinas": [
       {
         "nome": "COVID-19",

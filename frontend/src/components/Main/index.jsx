@@ -42,8 +42,7 @@ export default function Main() {
 
             <div className="mt-8 flex items-center gap-4 text-sm text-muted-foreground">
               <div className="flex items-center gap-1 text-foreground font-medium text-warning">
-                <Star className="h-4 w-4 fill-current text-warning" />{" "}
-                2.3/5
+                <Star className="h-4 w-4 fill-current text-warning" /> 2.3/5
                 <span className="text-success font-normal">
                   de tutores felizes
                 </span>

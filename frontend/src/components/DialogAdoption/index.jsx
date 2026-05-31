@@ -30,7 +30,10 @@ export function DialogAdoption({ selected, onClose }) {
 
   return (
     <>
-      <Dialog open={!!selected && !successOpen} onOpenChange={(open) => !open && onClose()}>
+      <Dialog
+        open={!!selected && !successOpen}
+        onOpenChange={(open) => !open && onClose()}
+      >
         <DialogContent className="max-w-3xl max-h-[90vh] overflow-y-auto p-0 rounded-3xl bg-success">
           {selected && (
             <>
@@ -61,57 +64,57 @@ export function DialogAdoption({ selected, onClose }) {
                     </DialogDescription>
                   </DialogHeader>
 
-                {/* Grid de Informações Técnicas */}
-                <div className="mt-5 grid grid-cols-2 gap-4 text-sm">
-                  <InfoItem
-                    icon={<Calendar className="h-4 w-4" />}
-                    label="Idade"
-                    value={selected.age}
-                  />
-                  <InfoItem
-                    icon={<PawPrint className="h-4 w-4" />}
-                    label="Raça"
-                    value={selected.breed}
-                  />
-                  <InfoItem
-                    icon={<Weight className="h-4 w-4" />}
-                    label="Peso"
-                    value={selected.weight}
-                  />
-                  <InfoItem
-                    icon={<Ruler className="h-4 w-4" />}
-                    label="Porte"
-                    value={selected.size}
-                  />
-                  <InfoItem
-                    icon={<MapPin className="h-4 w-4" />}
-                    label="Local"
-                    value={selected.local}
-                  />
-                  <InfoItem
-                    icon={<Stethoscope className="h-4 w-4" />}
-                    label="Castrado"
-                    value={selected.castrado ? "Sim" : "Não"}
-                  />
-                </div>
+                  {/* Grid de Informações Técnicas */}
+                  <div className="mt-5 grid grid-cols-2 gap-4 text-sm">
+                    <InfoItem
+                      icon={<Calendar className="h-4 w-4" />}
+                      label="Idade"
+                      value={selected.age}
+                    />
+                    <InfoItem
+                      icon={<PawPrint className="h-4 w-4" />}
+                      label="Raça"
+                      value={selected.breed}
+                    />
+                    <InfoItem
+                      icon={<Weight className="h-4 w-4" />}
+                      label="Peso"
+                      value={selected.weight}
+                    />
+                    <InfoItem
+                      icon={<Ruler className="h-4 w-4" />}
+                      label="Porte"
+                      value={selected.size}
+                    />
+                    <InfoItem
+                      icon={<MapPin className="h-4 w-4" />}
+                      label="Local"
+                      value={selected.local}
+                    />
+                    <InfoItem
+                      icon={<Stethoscope className="h-4 w-4" />}
+                      label="Castrado"
+                      value={selected.castrado ? "Sim" : "Não"}
+                    />
+                  </div>
 
-                {/* Dados de Resgate */}
-                <div className="mt-6 text-xs text-muted-foreground space-y-1.5 bg-muted/40 p-3 rounded-xl">
-                  <p>
-                    <strong className="text-foreground">Microchip:</strong>{" "}
-                    {selected.microchip}
-                  </p>
-                  <p>
-                    <strong className="text-foreground">Alimentação:</strong>{" "}
-                    {selected.alimentacao}
-                  </p>
-                  <p>
-                    <strong className="text-foreground">Vermifugado:</strong>{" "}
-                    {selected.vermifugado ? "Sim" : "Não"}
-                  </p>
+                  {/* Dados de Resgate */}
+                  <div className="mt-6 text-xs text-muted-foreground space-y-1.5 bg-muted/40 p-3 rounded-xl">
+                    <p>
+                      <strong className="text-foreground">Microchip:</strong>{" "}
+                      {selected.microchip}
+                    </p>
+                    <p>
+                      <strong className="text-foreground">Alimentação:</strong>{" "}
+                      {selected.alimentacao}
+                    </p>
+                    <p>
+                      <strong className="text-foreground">Vermifugado:</strong>{" "}
+                      {selected.vermifugado ? "Sim" : "Não"}
+                    </p>
+                  </div>
                 </div>
               </div>
-            </div>
 
               {/* Seção Inferior: Carteira de Vacinação e Ações */}
               <div className="px-6 md:px-8 pb-8">
@@ -177,7 +180,10 @@ export function DialogAdoption({ selected, onClose }) {
         </DialogContent>
       </Dialog>
 
-      <Dialog open={successOpen} onOpenChange={(open) => !open && handleCloseSuccess()}>
+      <Dialog
+        open={successOpen}
+        onOpenChange={(open) => !open && handleCloseSuccess()}
+      >
         <DialogContent className="max-w-sm rounded-3xl text-center">
           <DialogHeader>
             <DialogTitle className="text-2xl">
@@ -188,7 +194,10 @@ export function DialogAdoption({ selected, onClose }) {
             </DialogDescription>
           </DialogHeader>
           <DialogFooter>
-            <Button className="w-full rounded-full" onClick={handleCloseSuccess}>
+            <Button
+              className="w-full rounded-full"
+              onClick={handleCloseSuccess}
+            >
               Ok
             </Button>
           </DialogFooter>
