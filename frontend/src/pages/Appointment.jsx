@@ -12,6 +12,12 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import api from "@/utils/Api";
+import {
+  validatePetName,
+  validateBreed,
+  validateTutorName,
+  validatePhone,
+} from "../validation/validators";
 
 const servicos = [
   { id: "banho", icon: Bath, nome: "Banho", duracao: "45 min", preco: 70 },
@@ -52,12 +58,16 @@ export default function Appointment() {
   const [servico, setServico] = useState("banho");
   const [horario, setHorario] = useState("10:30");
   const [feedback, setFeedback] = useState(null);
+  const [petNameError, setPetNameError] = useState("");
+  const [breedError, setBreedError] = useState("");
+  const [tutorNameError, setTutorNameError] = useState("");
+  const [phoneError, setPhoneError] = useState("");
   const {
     register,
     handleSubmit,
     reset,
     setValue,
-    formState: { isSubmitting },
+    formState: { isSubmitting, errors },
   } = useForm({
     defaultValues: {
       servico: servicos[0],
@@ -205,12 +215,13 @@ export default function Appointment() {
                     minLength: 2,
                     maxLength: 50,
                   })}
-                  required
-                  minLength={2}
-                  maxLength={50}
                   type="text"
                   placeholder="Ex: Thor"
+                  onChange={(e) => validatePetName(e, setPetNameError)}
                 />
+                {petNameError && (
+                  <p className="text-sm text-destructive">{petNameError}</p>
+                )}
               </div>
               <div className="space-y-1.5">
                 <Label htmlFor="raca">Raça / porte</Label>
@@ -226,7 +237,11 @@ export default function Appointment() {
                   maxLength={50}
                   type="text"
                   placeholder="Ex: Shih Tzu, pequeno"
+                  onChange={(e) => validateBreed(e, setBreedError)}
                 />
+                {breedError && (
+                  <p className="text-sm text-destructive">{breedError}</p>
+                )}
               </div>
               <div className="space-y-1.5">
                 <Label htmlFor="tutor">Seu nome</Label>
@@ -243,7 +258,11 @@ export default function Appointment() {
                   maxLength={100}
                   pattern="[A-Za-zÀ-ÿ\s]+"
                   placeholder="Como podemos te chamar?"
+                  onChange={(e) => validateTutorName(e, setTutorNameError)}
                 />
+                {tutorNameError && (
+                  <p className="text-sm text-destructive">{tutorNameError}</p>
+                )}
               </div>
               <div className="space-y-1.5">
                 <Label htmlFor="tel">WhatsApp</Label>
@@ -260,7 +279,11 @@ export default function Appointment() {
                   maxLength={15}
                   pattern={"[0-9\\s\\(\\)\\+\\-]+"}
                   placeholder="(11) 99999-0000"
+                  onChange={(e) => validatePhone(e, setPhoneError)}
                 />
+                {phoneError && (
+                  <p className="text-sm text-destructive">{phoneError}</p>
+                )}
               </div>
               <div className="space-y-1.5 sm:col-span-2">
                 <Label htmlFor="data">Data</Label>

@@ -5,6 +5,14 @@ import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import api from "@/utils/Api";
 import { useNavigate } from "react-router-dom";
+import {
+  validateName,
+  validatePhone,
+  validateCity,
+  validateAdress,
+  validateEmail,
+  validatePassword,
+} from "../../validation/validators";
 
 export default function Login() {
   const navigate = useNavigate();
@@ -16,74 +24,6 @@ export default function Login() {
   const [adressError, setAdressError] = useState("");
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
-
-  //validação do nome:
-  function validateName(e) {
-    const input = e.target;
-
-    if (input.validity.tooShort) {
-      setNameError("O nome deve ter pelo menos 2 caracteres");
-    } else {
-      setNameError("");
-    }
-  }
-
-  //validação do telefone:
-  function validatePhone(e) {
-    const valor = e.target.value;
-
-    if (!/^[\d\s()+-]*$/.test(valor)) {
-      setPhoneError("Digite um telefone válido");
-    } else if (valor.length > 0 && valor.length < 10) {
-      setPhoneError("O telefone deve ter pelo menos 10 caracteres");
-    } else {
-      setPhoneError("");
-    }
-  }
-
-  //validação da cidade:
-  function validateCity(e) {
-    const input = e.target;
-
-    if (input.validity.tooShort) {
-      setCityError("Digite uma cidade válida");
-    } else {
-      setCityError("");
-    }
-  }
-
-  //validação do endereço
-  function validateAdress(e) {
-    const input = e.target;
-
-    if (input.validity.tooShort) {
-      setAdressError("Digite uma cidade válida");
-    } else {
-      setAdressError("");
-    }
-  }
-
-  //validação do email
-  function validateEmail(e) {
-    const valor = e.target.value;
-
-    if (valor.length > 0 && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(valor)) {
-      setEmailError("Digite um e-mail válido");
-    } else {
-      setEmailError("");
-    }
-  }
-
-  //validação da senha
-  function validatePassword(e) {
-    const input = e.target;
-
-    if (input.validity.tooShort) {
-      setPasswordError("A senha deve ter pelo menos 8 caracteres");
-    } else {
-      setPasswordError("");
-    }
-  }
 
   async function handleSigninSubmit(e) {
     e.preventDefault();
@@ -180,7 +120,7 @@ export default function Login() {
                     type="email"
                     placeholder="seu@email.com"
                     required
-                    onChange={validateEmail}
+                    onChange={(e) => validateEmail(e, setEmailError)}
                   />
                   {emailError && (
                     <p className="text-sm text-destructive">{emailError}</p>
@@ -195,7 +135,7 @@ export default function Login() {
                     required
                     placeholder="********"
                     minLength={8}
-                    onChange={validatePassword}
+                    onChange={(e) => validatePassword(e, setPasswordError)}
                   />
                   {passwordError && (
                     <p className="text-sm text-destructive">{passwordError}</p>
@@ -233,7 +173,7 @@ export default function Login() {
                     type="text"
                     minLength={2}
                     required
-                    onChange={validateName}
+                    onChange={(e) => validateName(e, setNameError)}
                   />
                   {nameError && (
                     <p className="text-sm text-destructive">{nameError}</p>
@@ -251,7 +191,7 @@ export default function Login() {
                       required
                       minLength={10}
                       maxLength={15}
-                      onChange={validatePhone}
+                      onChange={(e) => validatePhone(e, setPhoneError)}
                     />
                     {phoneError && (
                       <p className="text-sm text-destructive">{phoneError}</p>
@@ -266,7 +206,7 @@ export default function Login() {
                       placeholder="Sua cidade"
                       minLength={2}
                       required
-                      onChange={validateCity}
+                      onChange={(e) => validateCity(e, setCityError)}
                     />
                     {cityError && (
                       <p className="text-sm text-destructive">{cityError}</p>
@@ -283,7 +223,7 @@ export default function Login() {
                     required
                     type="text"
                     minLength={5}
-                    onChange={validateAdress}
+                    onChange={(e) => validateAdress(e, setAdressError)}
                   />
                   {adressError && (
                     <p className="text-sm text-destructive">{adressError}</p>
@@ -298,7 +238,7 @@ export default function Login() {
                     type="email"
                     placeholder="seu@email.com"
                     required
-                    onChange={validateEmail}
+                    onChange={(e) => validateEmail(e, setEmailError)}
                   />
                   {emailError && (
                     <p className="text-sm text-destructive">{emailError}</p>
@@ -314,7 +254,7 @@ export default function Login() {
                     minLength={8}
                     required
                     placeholder="********"
-                    onChange={validatePassword}
+                    onChange={(e) => validatePassword(e, passwordError)}
                   />
                   {passwordError && (
                     <p className="text-sm text-destructive">{passwordError}</p>
