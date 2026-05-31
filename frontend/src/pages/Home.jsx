@@ -1,7 +1,7 @@
 import Adoption from "@/components/Adoption";
 import Main from "@/components/Main";
 import Service from "@/components/Services";
-import Cta from "../../src/components/Cta/index";
+import Cta from "@/components/CTA";
 export default function Home() {
   return (
     <>
