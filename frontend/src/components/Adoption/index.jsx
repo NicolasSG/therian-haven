@@ -48,7 +48,7 @@ export default function Adoption({ preview = false }) {
               </h2>
               <p className="mt-3 text-muted-foreground max-w-xl">
                 Enquanto você lê esta mensagem, muitos deles passam mais um dia
-                sem uma família. Adotar não muda apenas a vida de um animal —
+                sem uma família. Adotar não muda apenas a vida de um Therian —
                 muda o mundo dele.
               </p>
             </div>

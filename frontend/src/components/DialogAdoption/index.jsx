@@ -37,21 +37,31 @@ export function DialogAdoption({ selected, onClose }) {
     const approved = Math.random() < 0.5;
 
     const rejectionReasons = [
-      `${name} foi reprovado após declarar que "o sofá é meu".`,
-      `${name} tentou negociar quem manda na casa. O pet venceu a entrevista.`,
-      `${name} apresentou sinais preocupantes de gostar de dormir sem um gato pisando no rosto.`,
-      `${name} não sobreviveu à fase experimental de latidos às 4h da manhã.`,
-      `${name} foi considerado emocionalmente frágil para encontrar vômito no tapete às 7h.`,
-      `${name} acredita que portas fechadas impedem a entrada de gatos.`,
-      `${name} demonstrou excesso de apego aos próprios móveis.`,
-      `${name} afirmou que nunca falaria sozinho com um animal. A banca avaliadora caiu na risada.`,
-      `${name} ainda acha que poderá ir ao banheiro desacompanhado.`,
-      `${name} não apresentou evidências de que aceita ser ignorado após gastar uma fortuna em brinquedos.`,
-      `${name} falhou ao responder quem ocupa o topo da cadeia alimentar da casa.`,
-      `${name} não está preparado para pagar a comida premium e receber desprezo em troca.`,
-      `${name} apresentou resistência ao conceito de pelos em absolutamente tudo.`,
-      `${name} acredita que acordar cedo é uma escolha.`,
-      `${name} foi informado sobre a existência de veterinários e decidiu fugir da entrevista.`,
+      `${name} foi reprovado após perguntar se o pet poderia dormir no chão.`,
+      `${name} demonstrou expectativas irreais sobre a própria autoridade dentro da residência.`,
+      `${name} tentou impor horários para alimentação. O pet classificou isso como uma red flag.`,
+      `${name} não atingiu a pontuação mínima no teste de abrir sachês sob pressão.`,
+      `${name} foi considerado excessivamente otimista ao acreditar que seus objetos permaneceriam intactos.`,
+      `${name} declarou gostar de silêncio. A entrevista terminou imediatamente.`,
+      `${name} não conseguiu justificar por que precisa de espaço na própria cama.`,
+      `${name} apresentou comportamento suspeito ao reclamar de pegadas de lama dentro de casa.`,
+      `${name} acredita que plantas decorativas devem sobreviver mais de uma semana.`,
+      `${name} falhou ao explicar por que o pet não deveria ocupar 98% do sofá.`,
+      `${name} demonstrou resistência ao conceito de passeios durante condições climáticas questionáveis.`,
+      `${name} foi incapaz de prometer atenção exclusiva durante reuniões online.`,
+      `${name} não apresentou experiência prévia em interpretar miados sem contexto.`,
+      `${name} tentou argumentar que fios elétricos não são brinquedos.`,
+      `${name} foi considerado financeiramente instável após descobrir o preço dos petiscos premium.`,
+      `${name} acredita que "não" possui significado jurídico perante um gato.`,
+      `${name} demonstrou desconforto ao ouvir a expressão "surpresa no tapete".`,
+      `${name} falhou no teste prático de ignorar o próprio jantar para servir o pet primeiro.`,
+      `${name} não soube responder quantas fotos por dia pretende tirar do futuro chefe.`,
+      `${name} foi reprovado por achar que a casa continuaria sendo dele após a adoção.`,
+      `${name} apresentou sinais preocupantes de apego às próprias roupas sem pelos.`,
+      `${name} tentou negociar a quantidade de brinquedos espalhados pela sala.`,
+      `${name} não demonstrou preparo emocional para ser observado enquanto usa o banheiro.`,
+      `${name} afirmou que pretende trabalhar sem um animal deitado sobre o teclado.`,
+      `${name} foi considerado incompatível com o cargo de humano de estimação.`,
     ];
 
     const rejectionReason =
@@ -247,12 +257,25 @@ export function DialogAdoption({ selected, onClose }) {
         <DialogContent className="max-w-sm rounded-3xl text-center">
           <DialogHeader>
             <DialogTitle className="text-2xl">
-              Pedido enviado com sucesso
+              Voce ja e um realizador de sonhos! 🥳
             </DialogTitle>
             <DialogDescription>
-              Entraremos em contato em breve.
+              Aguarde a resposta do humano para saber se seu pedido de adoção
+              foi aprovado ou não.
             </DialogDescription>
           </DialogHeader>
+          <div className="w-full aspect-video rounded-xl overflow-hidden">
+            <iframe
+              width="100%"
+              height="100%"
+              src="https://www.youtube.com/embed/ENM_grufMdc?si=5ZnaRdR5OeFmiUal&autoplay=1&loop=1&playlist=ENM_grufMdc&mute=1"
+              title="YouTube video player"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerPolicy="strict-origin-when-cross-origin"
+              allowFullScreen
+            />
+          </div>
           <DialogFooter>
             <Button
               className="w-full rounded-full"

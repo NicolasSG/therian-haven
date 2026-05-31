@@ -38,7 +38,7 @@ export default function Service() {
             Nossos serviços
           </p>
           <h2 className="mt-2 text-4xl font-bold text-secondary-foreground">
-            Tudo o que seu therianZinho precisa em um só lugar
+            Tudo o que um Therian precisa em um só lugar
           </h2>
         </div>
         <NavLink

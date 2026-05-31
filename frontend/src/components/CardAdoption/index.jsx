@@ -3,6 +3,16 @@
 import { useEffect, useState } from "react";
 import { MapPin, Heart, Trash2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from "@/components/ui/alert-dialog";
 import api from "@/utils/Api";
 import { DialogAdoption } from "../DialogAdoption";
 
@@ -56,6 +66,7 @@ export default function CardAdoption({ limit = null }) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const [user, setUser] = useState(getLoggedUser);
+  const [deleteTarget, setDeleteTarget] = useState(null);
 
   useEffect(() => {
     function syncUser() {
@@ -162,7 +173,7 @@ export default function CardAdoption({ limit = null }) {
             <div className="p-6">
               <div className="flex items-baseline justify-between">
                 <h2 className="font-display text-2xl font-semibold">
-                  {a.name}
+                  {a.name.split(" ")[0]}
                 </h2>
                 <span className="text-xs rounded-full bg-sage-soft text-sage-deep px-2.5 py-1 font-medium">
                   {a.species}
@@ -179,14 +190,14 @@ export default function CardAdoption({ limit = null }) {
                   onClick={() => setSelected(a)}
                   className="flex-1 rounded-full bg-success"
                 >
-                  <Heart className="h-4 w-4 mr-2" /> Quero adotar {a.name}
+                  <Heart className="h-4 w-4 mr-2" /> Quero adotar {a.name.split(" ")[0]}
                 </Button>
                 {isOwner(a) && (
                   <Button
                     variant="outline"
                     size="icon"
                     className="rounded-full shrink-0 border-destructive/40 text-destructive hover:bg-destructive hover:text-destructive-foreground"
-                    onClick={() => handleDelete(a)}
+                    onClick={() => setDeleteTarget(a)}
                   >
                     <Trash2 className="h-4 w-4" />
                   </Button>
@@ -198,6 +209,46 @@ export default function CardAdoption({ limit = null }) {
       </div>
 
       <DialogAdoption selected={selected} onClose={() => setSelected(null)} />
+
+      <AlertDialog
+        open={!!deleteTarget}
+        onOpenChange={(open) => !open && setDeleteTarget(null)}
+      >
+        <AlertDialogContent className="rounded-3xl w-[340px] p-4">
+          <AlertDialogHeader>
+            <AlertDialogTitle>Eliminar card</AlertDialogTitle>
+            <AlertDialogDescription>
+              Tens a certeza que queres eliminar o card de{" "}
+              <strong>{deleteTarget?.name}</strong>? Esta ação não pode ser
+              desfeita.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <div className="w-full overflow-hidden rounded-xl">
+            <iframe
+              src="https://www.tiktok.com/embed/v2/7621270787517058325?autoplay=1&loop=1"
+              width="100%"
+              height="700"
+              frameBorder="0"
+              allow="autoplay; encrypted-media"
+              allowFullScreen
+            />
+          </div>
+          <AlertDialogFooter>
+            <AlertDialogCancel className="rounded-full">
+              Cancelar
+            </AlertDialogCancel>
+            <AlertDialogAction
+              className="rounded-full bg-destructive text-destructive-foreground hover:bg-destructive/90"
+              onClick={() => {
+                handleDelete(deleteTarget);
+                setDeleteTarget(null);
+              }}
+            >
+              Eliminar
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </section>
   );
 }

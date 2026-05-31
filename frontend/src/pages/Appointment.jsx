@@ -197,11 +197,11 @@ export default function Appointment() {
 
           <div>
             <h2 className="text-xl font-semibold mb-4">
-              2. Dados do pet e tutor
+              2. Dados do Therian e tutor
             </h2>
             <div className="grid sm:grid-cols-2 gap-4">
               <div className="space-y-1.5">
-                <Label htmlFor="pet">Nome do pet</Label>
+                <Label htmlFor="pet">Nome do Therian</Label>
                 <Input
                   id="pet"
                   {...register("pet", {
