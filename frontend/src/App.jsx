@@ -5,6 +5,7 @@ import Roots from "./pages/Root";
 import Home from "./pages/Home";
 import FindAHome from "./pages/FindAHome";
 import Appointment from "./pages/Appointment";
+import NotFound from "./pages/NotFound";
 import { useEffect } from "react";
 import { applyRandomTheme } from "@/components/ThemeSwitcher";
 
@@ -23,6 +24,7 @@ function App() {
           <Route path="adoption" element={<Adoption />} />
           <Route path="login" element={<Login />} />
           <Route path="encontre-um-lar" element={<FindAHome />} />
+          <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
     </BrowserRouter>
