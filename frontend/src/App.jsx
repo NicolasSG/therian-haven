@@ -1,7 +1,7 @@
 import Adoption from "./components/Adoption";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from "./components/Login";
-import Roots from "./pages/Root";
+import Root from "./pages/Root";
 import Home from "./pages/Home";
 import FindAHome from "./pages/FindAHome";
 import Appointment from "./pages/Appointment";
@@ -17,7 +17,7 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Roots />}>
+        <Route path="/" element={<Root />}>
           <Route index element={<Home />} />
           <Route path="agendamento" element={<Appointment />} />
           <Route path="adocao" element={<Adoption />} />

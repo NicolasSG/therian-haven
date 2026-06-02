@@ -4,7 +4,7 @@ import Header from "@/components/Header";
 import { Toaster } from "@/components/ui/toaster";
 import WinnerPopup from "@/components/WinnerPopup";
 
-export default function Roots() {
+export default function Root() {
   return (
     <>
       <WinnerPopup />
